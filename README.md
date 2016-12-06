@@ -11,27 +11,27 @@ See example below.
 var nested = require('nested-props')
 
 var obj = {}
-nested.set(obj, 'user.name', 'kamiky')
+nested.set(obj, 'user.name', 'username')
 nested.set(obj, 'user.id', '666')
 nested.set(obj, 'user.info.city', 'paris')
 nested.set(obj, 'user.info.country', 'france')
 /*
 { user:
-   { name: 'kamiky',
+   { name: 'username',
      id: '666',
      info: { city: 'paris', country: 'france' } } }
 */
 nested.set(obj, 'user.id.value', '666')
 /*
 { user:
-   { name: 'kamiky',
+   { name: 'username',
      id: { value: '666' },
      info: { city: 'paris', country: 'france' } } }
 */
 nested.set(obj, 'user.id.value', '777')
 /*
 { user:
-   { name: 'kamiky',
+   { name: 'username',
      id: { value: '777' },
      info: { city: 'paris', country: 'france' } } }
 */
