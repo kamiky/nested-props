@@ -26,9 +26,16 @@ nested.set(obj, 'user.id.value', '777')
      info: { city: 'paris', country: 'france' } } }
 */
 
-var country = nested.get(obj, 'user.info.country')
+var country = nested.get(obj, 'user.test.test')
 /*
   france
+*/
+
+/* use this method to prevent
+TypeError: Cannot read property 'test' of undefined */
+var undefinedTest = nested.get(obj, 'user.test.test')
+/*
+  undefined
 */
 
 console.log(obj)
