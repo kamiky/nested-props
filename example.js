@@ -11,6 +11,7 @@ nested.set(obj, 'user.info.country', 'france')
      id: '666',
      info: { city: 'paris', country: 'france' } } }
 */
+
 nested.set(obj, 'user.id.value', '666')
 /*
 { user:
@@ -18,6 +19,7 @@ nested.set(obj, 'user.id.value', '666')
      id: { value: '666' },
      info: { city: 'paris', country: 'france' } } }
 */
+
 nested.set(obj, 'user.id.value', '777')
 /*
 { user:
