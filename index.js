@@ -1,6 +1,6 @@
 function setNestedProperty (obj, name, value) {
-  if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
-    throw new Error('nestedProps first argument should be a javascript object')
+  if (!(typeof obj === 'object' || !obj || Array.isArray(obj))) {
+    throw new Error('nestedProps first argument type is not supported')
   }
   var props = name.split('.')
   var tmp = obj
@@ -18,16 +18,32 @@ function setNestedProperty (obj, name, value) {
 }
 
 function getNestedProperty (obj, property) {
-  if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
-    throw new Error('nestedProps first argument should be a javscript object')
+  if (!(typeof obj === 'object' || !obj || Array.isArray(obj))) {
+    throw new Error('nestedProps first argument type is not supported')
   }
+  if (!obj) return null
   var props = property.split('.')
+  var regex = new RegExp('\\[(.*?)\\]', 'gi')
+  var result, prop, objectProperty, index
 
-  props.forEach(function (prop, index) {
-    if (obj) {
-      obj = obj[prop]
+  for (var i = 0; i < props.length; ++i) {
+    prop = props[i]
+    objectProperty = prop.substr(0, prop.indexOf('['))
+    if (prop.indexOf('[') === -1 && !objectProperty) {
+      objectProperty = prop
     }
-  })
+    if (obj && objectProperty && objectProperty.length > 0) {
+      obj = obj[objectProperty]
+    }
+    while ((result = regex.exec(prop))) {
+      index = result[1]
+      if (obj && Array.isArray(obj) && obj.length > index && index >= 0) {
+        obj = obj[index]
+      } else {
+        return null
+      }
+    }
+  }
   return obj
 }
 
