@@ -37,7 +37,7 @@ nested.set(obj, 'user.id.value', '777')
      info: { city: 'paris', country: 'france' } } }
 */
 
-var country = nested.get(obj, 'user.test.test')
+var country = nested.get(obj, 'user.info.country')
 /*
   france
 */
@@ -56,9 +56,7 @@ var x2 = nested.get(obj, 'coordinates[1].value[0]')
 var y2 = nested.get(obj, 'coordinates[1].value[1]')
 /* 44 */
 
-var x3 = nested.get(obj, 'coordinates[3].value[0]')
+var x3 = nested.get(obj, 'coordinates[2].value[0]')
 /* null */
-
-console.log(x3)
 
 
