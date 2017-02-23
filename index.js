@@ -2,6 +2,9 @@ function setNestedProperty (obj, name, value) {
   if (!(typeof obj === 'object' || !obj || Array.isArray(obj))) {
     throw new Error('nestedProps first argument type is not supported')
   }
+  if (!name) {
+    throw new Error('nestedProps second argument is undefined')
+  }
   var props = name.split('.')
   var tmp = obj
   props.forEach(function(prop, index) {
